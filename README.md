@@ -2,9 +2,9 @@
 School project for Web App creation using PHP
 
 #Main Functions
-##Admin:
+#Admin:
 - Add News 
 - Delete News
 
-##Regular User:
+#Regular User:
 - Read News
