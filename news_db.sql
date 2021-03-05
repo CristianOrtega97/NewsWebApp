@@ -1,0 +1,27 @@
+-- USER CREATION
+CREATE TABLE `newsapp`.`user` ( 
+`id` INT NOT NULL AUTO_INCREMENT , 
+`name` VARCHAR(50) NOT NULL , 
+`user` VARCHAR(50) NOT NULL , 
+`password` VARCHAR(50) NOT NULL , 
+PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+-- NEWS CREATION
+CREATE TABLE `newsapp`.`news` ( 
+`id` INT NOT NULL AUTO_INCREMENT , 
+`title` VARCHAR(50) NOT NULL , 
+`photo` VARCHAR(50) NOT NULL , 
+`text` TEXT NOT NULL , 
+`section_id` VARCHAR(100) NOT NULL , 
+PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+-- SECTION CREATION
+CREATE TABLE `newsapp`.`sections` ( 
+`id` INT NOT NULL AUTO_INCREMENT , 
+`section` VARCHAR(50) NOT NULL , 
+PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+-- FOREIGN KEY NEWS
+ALTER TABLE `news` ADD FOREIGN KEY (
+`section_id`) REFERENCES `sections`(`id`) ON DELETE RESTRICT 
+ON UPDATE RESTRICT;
