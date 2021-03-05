@@ -12,7 +12,7 @@ CREATE TABLE `newsapp`.`news` (
 `title` VARCHAR(50) NOT NULL , 
 `photo` VARCHAR(50) NOT NULL , 
 `text` TEXT NOT NULL , 
-`section_id` VARCHAR(100) NOT NULL , 
+`section_id` INT NOT NULL , 
 PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 -- SECTION CREATION
@@ -23,5 +23,5 @@ PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 -- FOREIGN KEY NEWS
 ALTER TABLE `news` ADD FOREIGN KEY (
-`section_id`) REFERENCES `sections`(`id`) ON DELETE RESTRICT 
-ON UPDATE RESTRICT;
+`section_id`) REFERENCES `news`(`id`) 
+ON DELETE RESTRICT ON UPDATE RESTRICT;

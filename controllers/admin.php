@@ -2,7 +2,7 @@
 $hostname = "127.0.0.1";
 $hostuser = "root";
 $hostpassword = "";
-$hostdatabase = "news_web_app";
+$hostdatabase = "newsapp";
 
 $connection = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
 
