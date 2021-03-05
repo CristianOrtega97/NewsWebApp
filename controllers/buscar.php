@@ -2,12 +2,12 @@
 $hostname = "127.0.0.1";
 $hostuser = "root";
 $hostpassword = "";
-$hostdatabase = "news_web_app";
+$hostdatabase = "newsapp";
 
 $connection = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
 
 if ($connection) {
-    
+
 // Get Variables
 $user_name = $_GET['user_name'];
 $user_password = $_GET['user_password'];
