@@ -1,0 +1,20 @@
+- Agregar a DB 
+    - Titulo
+    - Fecha
+    - Autor
+
+- Página buscar
+    - Nueva página capáz de buscar noticias o retornar que son inexistentes
+
+- Sección Estadísiticas
+    - Generar reportes estadísticos de cuántas noticias de qué secciones se han agregado en qué fecha 
+
+- Agregar Dropdown para filtro
+    - News.html
+
+- Cambiar Dropdown para registro
+    - Admin.html
+
+- Useful
+    - Chart:    
+         https://canvasjs.com/php-charts/line-chart/
