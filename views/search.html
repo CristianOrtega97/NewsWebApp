@@ -39,8 +39,11 @@
         <div class="row justify-content-md-center">
           <div class="col">
             <ul class="nav nav-tabs justify-content-center">
+                <li class="nav-item">
+                    <a href="#search" class="nav-link active" role="tab" data-toggle="tab">Search News</a>
+                </li>
               <li class="nav-item">
-                  <a href="#creation" class="nav-link active" role="tab" data-toggle="tab">Add a Note</a>
+                  <a href="#creation" class="nav-link" role="tab" data-toggle="tab">Add a Note</a>
               </li>
               <li class="nav-item">
                 <a href="#delete-section" class="nav-link" role="tab" data-toggle="tab">Delete Sections</a>
@@ -54,6 +57,48 @@
                 <div class="col-5">
                   <div class="tab-content">
                     
+                    <!--Search News-->
+                    <div role="tabpanel" class="tab-pane fade" id="search">
+                        <br>
+                        <form>
+                            <div class="form-group">
+                                <label for="lblTitle">Search:</label>
+                                <input type="text" class="form-control" id="usernameInput" placeholder="Write here">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                              <label for="lblPhoto"><em>Enter the date:</em></label>
+                              <input type="text" class="form-control" id="dateInpurt" placeholder="Write here">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="lblNote"><em>Write all text for the note:</em></label>
+                                <textarea class="form-control" id="txtNote" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                              <label for="lblNoteDelete"><em>Author:</em></label>
+                              <input type="text" class="form-control" id="noteInputDelete" placeholder="Author">
+                            </div>
+                            <br>
+                            <div class = "dropdown">
+                                <label for="lblSection"><em>Select the section:</em></label>
+                                <br>
+                                <select class="custom_select">
+                                <option selected = "">Open this select menu</option>
+                                <option value = "1" >Sports</option>
+                                <option value = "2" >International</option>
+                                <option value = "3" >Politics</option>
+                                <option value = "4" >Financial</option>
+                                <option value = "5" >Art</option>
+                                <option value = "6" >Weather</option>
+                              </select>
+                            </div>
+                            <br><br><br>
+                            <button type="submit" class="btn btn-primary btn-lg">Search</button>
+                        </form>
+                    </div>
+
+
                     <!--Note Creation-->
                     <div role="tabpanel" class="tab-pane fade" id="creation">
                         <br>
@@ -83,9 +128,9 @@
                             </div>
                             <br>
                             <div class = "dropdown">
-                              <label for="lblSection"><em>Select the section:</em></label>
-                              <br>
-                              <select class="custom_select">
+                                <label for="lblSection"><em>Select the section:</em></label>
+                                <br>
+                                <select class="custom_select">
                                 <option selected = "">Open this select menu</option>
                                 <option value = "1" >Sports</option>
                                 <option value = "2" >International</option>
