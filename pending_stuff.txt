@@ -3,16 +3,16 @@
     - Fecha
     - Autor
 
-- Página buscar  -  
+- Página buscar  -  PENDING
     - Nueva página capáz de buscar noticias o retornar que son inexistentes
 
-- Sección Estadísiticas
+- Sección Estadísiticas - FIXED BUT TESTING MISSING, WHITE SPACE FOR GENERIC GRAPH
     - Generar reportes estadísticos de cuántas noticias de qué secciones se han agregado en qué fecha 
 
-- Agregar Dropdown para filtro - 
+- Agregar Dropdown para filtro - PENDING
     - News.html
 
-- Cambiar Dropdown para registro - 
+- Cambiar Dropdown para registro - PENDING
     - Admin.html
 
 - Useful
