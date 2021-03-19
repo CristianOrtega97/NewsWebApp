@@ -7,12 +7,14 @@ CREATE TABLE `newsapp`.`user` (
 PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 -- NEWS CREATION
-CREATE TABLE `newsapp`.`news` ( 
-`id` INT NOT NULL AUTO_INCREMENT , 
-`title` VARCHAR(50) NOT NULL , 
-`photo` VARCHAR(50) NOT NULL , 
-`text` TEXT NOT NULL , 
-`section_id` INT NOT NULL , 
+CREATE TABLE `newsapp`.`news` (
+`id` INT NOT NULL AUTO_INCREMENT ,
+`title` VARCHAR(50) NOT NULL ,
+`autor` VARCHAR(50) NOT NULL ,
+`photo` LONGBLOB NOT NULL ,
+`text` TEXT NOT NULL ,
+`date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+`section_id` INT NOT NULL ,
 PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 -- SECTION CREATION

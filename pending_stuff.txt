@@ -1,20 +1,23 @@
-- Agregar a DB 
+- Agregar a DB   -  FIXED BUT TESTING MISSING
     - Titulo
     - Fecha
     - Autor
 
-- Página buscar
+- Página buscar  -  
     - Nueva página capáz de buscar noticias o retornar que son inexistentes
 
 - Sección Estadísiticas
     - Generar reportes estadísticos de cuántas noticias de qué secciones se han agregado en qué fecha 
 
-- Agregar Dropdown para filtro
+- Agregar Dropdown para filtro - 
     - News.html
 
-- Cambiar Dropdown para registro
+- Cambiar Dropdown para registro - 
     - Admin.html
 
 - Useful
     - Chart:    
-         https://canvasjs.com/php-charts/line-chart/
+        https://canvasjs.com/php-charts/line-chart/
+    
+    - How to create charts
+        https://youtu.be/hvkii393WOM
