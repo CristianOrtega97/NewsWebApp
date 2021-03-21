@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-4">
             <picture>
-                <source srcset="/imgs/news.png" type="image/svg+xml">
+                <source srcset="../imgs/news.png" type="image/svg+xml">
                 <img src="" class="img-fluid img-thumbnail w-50 p-3 mx-auto d-block" alt="LOGO">
             </picture>
         </div>
@@ -41,7 +41,10 @@
           <div class="col">
             <ul class="nav nav-tabs justify-content-center">
               <li class="nav-item">
-                  <a href="#creation" class="nav-link active" role="tab" data-toggle="tab">Add a Note</a>
+                  <a href="#section-creation" class="nav-link active" role="tab" data-toggle="tab">Add Section</a>
+              </li>
+              <li class="nav-item">
+                  <a href="#note-creation" class="nav-link" role="tab" data-toggle="tab">Add a Note</a>
               </li>
               <li class="nav-item">
                 <a href="#delete-section" class="nav-link" role="tab" data-toggle="tab">Delete Sections</a>
@@ -57,9 +60,21 @@
               <div class="row justify-content-md-center">
                 <div class="col-5">
                   <div class="tab-content">
-                    
+
+                    <!--Section Creation-->
+                    <div role="tabpanel" class="tab-pane fade" id="section-creation">
+                        <br>
+                        <form>
+                            <div class="form-group">
+                                <label for="lblTitle">Enter new Section:</label>
+                                <input type="text" class="form-control" id="sectionInput" placeholder="Enter new section">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                        </form>
+                    </div>
+
                     <!--Note Creation-->
-                    <div role="tabpanel" class="tab-pane fade" id="creation">
+                    <div role="tabpanel" class="tab-pane fade" id="note-creation">
                         <br>
                         <form>
                             <div class="form-group">
@@ -156,10 +171,31 @@
 
                       <!-- Graphs -->
                       <div role="tabpanel" class="tab-pane fade" id="graphs">
-                        <form>
+                        <!--<form action="admin.php" method="POST">-->
                             <!-- HERE GOES THE GRAPHS-->
                             <!-- No filter is required it's just a generic graph-->
-                        </form>
+                            <br>
+                            <?php
+                                $hostname = "localhost";
+                                $hostuser = "root";
+                                $hostpassword = "";
+                                //$hostuser = "id16368442_root";
+                                //$hostpassword = "H3lloWorld!1234";
+                                //$hostdatabase = "id16368442_newsapp";
+                                //$hostport = "3306";
+                                $hostdatabase = "newsapp";
+
+                                $connection = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
+
+
+                                if ($connection) {
+                                    echo "You're connected";
+                                }
+                                else{
+                                    echo "You're NOT connected";
+                                }
+                            ?>  
+                       <!-- </form> -->
                     </div>
               </div>
             </div>

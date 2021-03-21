@@ -3,16 +3,16 @@
     - Fecha
     - Autor
 
-- Página buscar  -  PENDING
+- Página buscar  -  FIXED BUT TESTING MISSING
     - Nueva página capáz de buscar noticias o retornar que son inexistentes
 
-- Sección Estadísiticas - FIXED BUT TESTING MISSING, WHITE SPACE FOR GENERIC GRAPH
+- Sección Estadísiticas  -  FIXED BUT TESTING MISSING
     - Generar reportes estadísticos de cuántas noticias de qué secciones se han agregado en qué fecha 
 
-- Agregar Dropdown para filtro - PENDING
+- Agregar Dropdown para filtro  -  Will be reviewed Friday
     - News.html
 
-- Cambiar Dropdown para registro - PENDING
+- Cambiar Dropdown para registro  -  Will be reviewed Friday
     - Admin.html
 
 - Useful
@@ -21,3 +21,5 @@
     
     - How to create charts
         https://youtu.be/hvkii393WOM
+
+    
