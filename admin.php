@@ -29,8 +29,8 @@
       <div class="row">
           <div class="col">
               <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-                  <a class="navbar-brand" href="../views/notes.html">Worldwide News</a>
-                  <a class="navbar-brand" href="../views/search.html">Search News</a>
+                  <a class="navbar-brand" href="notes.php">Worldwide News</a>
+                  <a class="navbar-brand" href="search.php">Search News</a>
               </nav>
           </div>
       </div>
@@ -175,17 +175,18 @@
                             <!-- HERE GOES THE GRAPHS-->
                             <!-- No filter is required it's just a generic graph-->
                             <br>
+                            
                             <?php
                                 $hostname = "localhost";
-                                $hostuser = "root";
-                                $hostpassword = "";
-                                //$hostuser = "id16368442_root";
-                                //$hostpassword = "H3lloWorld!1234";
-                                //$hostdatabase = "id16368442_newsapp";
-                                //$hostport = "3306";
-                                $hostdatabase = "newsapp";
+                                //$hostuser = "root";
+                                //$hostpassword = "";
+                                //$hostdatabase = "newsapp";
+                                $hostuser = "id16368442_root";
+                                $hostpassword = "H3lloWorld!1234";
+                                $hostdatabase = "id16368442_newsapp";
+                                $hostport = "3306";
 
-                                $connection = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
+                                $connection = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase,$hostport);
 
 
                                 if ($connection) {
