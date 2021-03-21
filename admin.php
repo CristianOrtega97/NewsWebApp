@@ -63,16 +63,52 @@
 
                     <!--Section Creation-->
                     <div role="tabpanel" class="tab-pane fade" id="section-creation">
-                        <br>
-                        <form>
-                            <div class="form-group">
-                                <label for="lblTitle">Enter new Section:</label>
-                                <input type="text" class="form-control" id="sectionInput" placeholder="Enter new section">
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                      <br>
+                      <div class="form-group">
+                        <form action="admin.php" method="GET">  
+                          <label for="lblTitle">Enter new Section:</label>
+                          <input type="text" class="form-control" name="txtSection" placeholder="Enter new section">  
+                          <br>
+                          <input type="submit" class="btn btn-primary btn-lg" name="insert">
                         </form>
+                      </div>
                     </div>
+                    <?php
+                      $hostname = "localhost";
+                      $hostuser = "root";
+                      $hostpassword = "";
+                      $hostdatabase = "newsapp";
+                      //$hostuser = "id16368442_root";
+                      //$hostpassword = "H3lloWorld!1234";
+                      //$hostdatabase = "id16368442_newsapp";
+                      //$hostport = "3306";
+                      $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
+                      if(array_key_exists('insert', $_GET)) {
+                        if($conn){
+                          $newSection = $_GET['txtSection'];
+                          echo "TXTSECTION: $newSection";
+                          $query = "INSERT INTO `sections` (`id`, `section`) VALUES (NULL, '$newSection')";
 
+                          if(mysqli_query($conn,$query)){
+                            echo '<div class="alert alert-success" role="alert">';
+                            echo "New Section was added sucessfuly";
+                            echo "</div>";
+                          }
+                          else{
+                            echo '<div class="alert alert-danger" role="alert">';
+                            echo "Cannot add new section, contact IT for assistance";
+                            echo "</div>";
+                          }
+                          mysqli_close($conn);
+                        }
+                        else{
+                          echo '<div class="alert alert-warning" role="alert">';
+                          echo "Internal error, contact IT for assitance.";
+                          echo "</div>";
+                        }
+                      }
+                    ?>
+                    
                     <!--Note Creation-->
                     <div role="tabpanel" class="tab-pane fade" id="note-creation">
                         <br>
@@ -175,18 +211,18 @@
                             <!-- HERE GOES THE GRAPHS-->
                             <!-- No filter is required it's just a generic graph-->
                             <br>
-                            
+
                             <?php
                                 $hostname = "localhost";
-                                //$hostuser = "root";
-                                //$hostpassword = "";
-                                //$hostdatabase = "newsapp";
-                                $hostuser = "id16368442_root";
-                                $hostpassword = "H3lloWorld!1234";
-                                $hostdatabase = "id16368442_newsapp";
-                                $hostport = "3306";
+                                $hostuser = "root";
+                                $hostpassword = "";
+                                $hostdatabase = "newsapp";
+                                //$hostuser = "id16368442_root";
+                                //$hostpassword = "H3lloWorld!1234";
+                                //$hostdatabase = "id16368442_newsapp";
+                                //$hostport = "3306";
 
-                                $connection = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase,$hostport);
+                                $connection = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
 
 
                                 if ($connection) {
@@ -211,6 +247,7 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>                          
+                                
   </body>
 </html>
