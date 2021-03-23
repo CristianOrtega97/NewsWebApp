@@ -21,6 +21,7 @@ PRIMARY KEY (`id`)) ENGINE = InnoDB;
 CREATE TABLE `newsapp`.`sections` ( 
 `id` INT NOT NULL AUTO_INCREMENT , 
 `section` VARCHAR(50) NOT NULL , 
+`st` INT NOT NULL DEFAULT '1' ,
 PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 -- FOREIGN KEY NEWS
@@ -33,7 +34,7 @@ ALTER TABLE `news` ADD FOREIGN KEY (
 ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- SECTION DATA INSERTION
-INSERT INTO `sections` (`id`, `section`) VALUES (NULL, 'Sports'), (NULL, 'Financial'), (NULL, 'Politics');
+INSERT INTO `sections` (`id`, `section`, `st`) VALUES (NULL, 'Sports', '1'), (NULL, 'Financial', '1'), (NULL, 'Politics','1');
 
 -- USER DATA INSERTION
 INSERT INTO `user` (`id`, `name`, `user`, `password`) VALUES (NULL, 'Emanuel', 'mezcal_editor', '1234');

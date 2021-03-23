@@ -69,45 +69,45 @@
                           <label for="lblTitle">Enter new Section:</label>
                           <input type="text" class="form-control" name="txtSection" placeholder="Enter new section">  
                           <br>
-                          <input type="submit" class="btn btn-primary btn-lg" name="insert">
+                          <input type="submit" class="btn btn-primary btn-lg" name="insertSection">
                         </form>
                       </div>
-                    </div>
-                    <?php
-                      $hostname = "localhost";
-                      $hostuser = "root";
-                      $hostpassword = "";
-                      $hostdatabase = "newsapp";
-                      //$hostuser = "id16368442_root";
-                      //$hostpassword = "H3lloWorld!1234";
-                      //$hostdatabase = "id16368442_newsapp";
-                      //$hostport = "3306";
-                      $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
-                      if(array_key_exists('insert', $_GET)) {
-                        if($conn){
-                          $newSection = $_GET['txtSection'];
-                          echo "TXTSECTION: $newSection";
-                          $query = "INSERT INTO `sections` (`id`, `section`) VALUES (NULL, '$newSection')";
+                      <?php
+                        $hostname = "localhost";
+                        $hostuser = "root";
+                        $hostpassword = "";
+                        $hostdatabase = "newsapp";
+                        //$hostuser = "id16368442_root";
+                        //$hostpassword = "H3lloWorld!1234";
+                        //$hostdatabase = "id16368442_newsapp";
+                        //$hostport = "3306";
+                        $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
+                        if(array_key_exists('insertSection', $_GET)) {
+                          if($conn){
+                            $newSection = $_GET['txtSection'];
+                            $query = "INSERT INTO `sections` (`id`, `section`) VALUES (NULL, '$newSection')";
 
-                          if(mysqli_query($conn,$query)){
-                            echo '<div class="alert alert-success" role="alert">';
-                            echo "New Section was added sucessfuly";
-                            echo "</div>";
+                            if(mysqli_query($conn,$query)){
+                              echo '<div class="alert alert-success" role="alert">';
+                              echo "New Section was added sucessfuly";
+                              echo "</div>";
+                            }
+                            else{
+                              echo '<div class="alert alert-danger" role="alert">';
+                              echo "Cannot add new section, contact IT for assistance";
+                              echo "</div>";
+                            }
+                            mysqli_close($conn);
                           }
                           else{
-                            echo '<div class="alert alert-danger" role="alert">';
-                            echo "Cannot add new section, contact IT for assistance";
+                            echo '<div class="alert alert-warning" role="alert">';
+                            echo "Internal error, contact IT for assitance.";
                             echo "</div>";
                           }
-                          mysqli_close($conn);
                         }
-                        else{
-                          echo '<div class="alert alert-warning" role="alert">';
-                          echo "Internal error, contact IT for assitance.";
-                          echo "</div>";
-                        }
-                      }
-                    ?>
+                      ?>
+                    </div>
+                    
                     
                     <!--Note Creation-->
                     <div role="tabpanel" class="tab-pane fade" id="note-creation">
@@ -124,8 +124,8 @@
                             </div>
                             <br>
                             <div class="form-group">
-                              <label for="lblPhoto"><em>Enter the date:</em></label>
-                              <input type="text" class="form-control" id="dateInpurt" placeholder="Enter the date">
+                              <label for="lblDate"><em>Enter the date:</em></label>
+                              <input type="text" class="form-control" id="dateInpurt" placeholder="MM/DD/YYYY">
                             </div>
                             <br>
                             <div class="form-group">
@@ -133,7 +133,7 @@
                                 <textarea class="form-control" id="txtNote" rows="3"></textarea>
                             </div>
                             <div class="form-group">
-                              <label for="lblNoteDelete"><em>Author:</em></label>
+                              <label for="lblAuthor"><em>Author:</em></label>
                               <input type="text" class="form-control" id="noteInputDelete" placeholder="Author">
                             </div>
                             <br>
@@ -141,16 +141,46 @@
                               <label for="lblSection"><em>Select the section:</em></label>
                               <br>
                               <select class="custom_select">
-                                <option selected = "">Open this select menu</option>
-                                <option value = "1" >Sports</option>
-                                <option value = "2" >International</option>
+                                <?php 
+                                  $hostname = "localhost";
+                                  $hostuser = "root";
+                                  $hostpassword = "";
+                                  $hostdatabase = "newsapp";
+                                  $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
+
+                                  if($conn){
+                                    $select_sql = "SELECT * FROM sections";
+                                    $result =  mysqli_query($conn,$select_sql);
+                                    $row = mysqli_fetch_assoc($result);
+                                    if (mysqli_num_rows($result) > 0) {
+                                      // output data of each row
+                                      do{
+                                        if($row["st"]==1){
+                                          echo '<option value = "'.$row["section"]. '" >'. $row["section"]. "</option>";
+                                        }
+                                      }
+                                      while($row = mysqli_fetch_assoc($result));
+                                      }
+                                    else {
+                                      echo "0 results";
+                                    }
+                                  }
+                                  else{
+                                    echo '<div class="alert alert-warning" role="alert">';
+                                    echo "Internal error, contact IT for assitance.";
+                                    echo "</div>";
+                                  }
+                                  mysqli_close($conn);
+                                ?>
+                                <!-- <option value = "1" >Sports</option>
+                                
                                 <option value = "3" >Politics</option>
                                 <option value = "4" >Financial</option>
                                 <option value = "5" >Art</option>
-                                <option value = "6" >Weather</option>
+                                <option value = "6" >Weather</option> -->
                               </select>
                             </div>
-                            <br><br><br>
+                            <br>
                             <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                         </form>
                     </div>
@@ -161,28 +191,110 @@
                             <nav class="navbar navbar-light bg-light">
                                 <div class="container-fluid">
                                   <a class="navbar-brand">Search for Section</a>
-                                  <form class="d-flex">
-                                    <input class="form-control me-2" type="search" placeholder="Enter username" aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                  <form class="d-flex" method="GET">
+                                    <input class="form-control me-2" type="search" name="txtSection" placeholder="Enter section's name" aria-label="Search">
+                                    <br>
+                                    <button class="btn btn-outline-success" type="submit" name="searchSection">Search</button>
                                   </form>
                                 </div>
                               </nav>
                             <br>
-                            <picture>
-                                <source srcset="imgs/logo.jpg" type="image/svg+xml">
-                                <img src="" class="img-fluid img-thumbnail w-75 p-3 mx-auto d-block" alt="LOGO">
-                            </picture>
-                            <div class="form-group">
-                              <label for="lblName3">Name:</label>
-                              <input type="text" class="form-control" id="nameInput3" placeholder="Here goes the company/user's name" readonly>
-                            </div>
-                            <br>
-                            <button type="submit" class="btn btn-primary btn-lg">Delete</button>
                         </form>
+                        <?php
+                          $hostname = "localhost";
+                          $hostuser = "root";
+                          $hostpassword = "";
+                          $hostdatabase = "newsapp";
+                          //$hostuser = "id16368442_root";
+                          //$hostpassword = "H3lloWorld!1234";
+                          //$hostdatabase = "id16368442_newsapp";
+                          //$hostport = "3306";
+                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
+                          if(array_key_exists('searchSection', $_GET)) {
+                            if($conn){
+                              $newSection  = $_GET['txtSection'];
+                              $query = "SELECT * FROM sections WHERE section ='$newSection'";
+                              $result =  mysqli_query($conn,$query);
+                              
+                              if(mysqli_query($conn,$query)){
+                                if (mysqli_num_rows($result) > 0) {
+                                  //HERE GOES CODE
+                                  $row = mysqli_fetch_assoc($result);
+                                  if($row["st"]==1){
+                                    echo '<form action="admin.php" method="get">';
+                                      echo '<div class="form-group">';
+                                        echo  '<label for="lblName3">Section Name Found:</label>';
+                                        echo  '<input type="text" class="form-control" name="txtDelete" value='."'".$row["section"]."' readonly>";
+                                        echo  '<br>';
+                                        echo  '<button type="submit" class="btn btn-primary btn-lg" name="deleteSection">Delete</button>';
+                                      echo  '</div>';
+                                    echo  '</form>';
+                                  }
+                                  else{
+                                    echo '<div class="alert alert-danger" role="alert">';
+                                    echo "Section is already deleted, try again";
+                                    echo "</div>";
+                                  }
+                                }
+                                else{
+                                  echo '<div class="alert alert-danger" role="alert">';
+                                  echo "Section doesn't exist, try again";
+                                  echo "</div>";
+                                }
+                              }
+                              else{
+                                echo '<div class="alert alert-danger" role="alert">';
+                                echo "Cannot find section, contact IT for assistance";
+                                echo "</div>";
+                              }
+                              mysqli_close($conn);
+                            }
+                            else{
+                              echo '<div class="alert alert-warning" role="alert">';
+                              echo "Internal error, contact IT for assitance.";
+                              echo "</div>";
+                            }
+                          }
+                        ?>
+
+                        <?php
+                          $hostname = "localhost";
+                          $hostuser = "root";
+                          $hostpassword = "";
+                          $hostdatabase = "newsapp";
+                          //$hostuser = "id16368442_root";
+                          //$hostpassword = "H3lloWorld!1234";
+                          //$hostdatabase = "id16368442_newsapp";
+                          //$hostport = "3306";
+                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
+                          if(array_key_exists('deleteSection', $_GET)) {
+                            if($conn){
+                              $foundSection  = $_GET['txtDelete'];
+                              mysqli_query($conn,"ALTER TABLE newsapp.news DROP FOREIGN KEY news_ibfk_1");
+                              $query = "UPDATE sections SET st = 0 WHERE section ='$foundSection'";
+                              mysqli_query($conn,"ALTER TABLE `news` ADD FOREIGN KEY (`section_id`) REFERENCES `sections`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT");                           
+                              mysqli_query($conn,"ALTER TABLE `news` DROP FOREIGN KEY `news_ibfk_2`; ALTER TABLE `news` ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`autor`) REFERENCES `user`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;");
+                              if(mysqli_query($conn,$query)){
+                                echo '<div class="alert alert-success" role="alert">';
+                                echo "New Section was DELETED sucessfuly";
+                                echo "</div>"; 
+                              }
+                              else{
+                                echo '<div class="alert alert-danger" role="alert">';
+                                echo "Cannot find section, contact IT for assistance";
+                                echo "</div>";
+                              }
+                              mysqli_close($conn);
+                            }
+                            else{
+                              echo '<div class="alert alert-warning" role="alert">';
+                              echo "Internal error, contact IT for assitance.";
+                              echo "</div>";
+                            }
+                          }
+                        ?>
                     </div>
-
-                <!--Delete test News-->
-
+                    
                     <!--Delete Full News-->
                     <div role="tabpanel" class="tab-pane fade" id="delete">
                         <form>
@@ -203,8 +315,42 @@
                             <br>
                             <button type="submit" class="btn btn-primary btn-lg">Delete</button>
                         </form>
-                      </div>
+                        <?php
+                          $hostname = "localhost";
+                          $hostuser = "root";
+                          $hostpassword = "";
+                          $hostdatabase = "newsapp";
+                          //$hostuser = "id16368442_root";
+                          //$hostpassword = "H3lloWorld!1234";
+                          //$hostdatabase = "id16368442_newsapp";
+                          //$hostport = "3306";
+                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
+                          if(array_key_exists('deleteNote', $_GET)) {
+                            if($conn){
+                              $newSection = $_GET['txtSection'];
+                              $query = "INSERT INTO `sections` (`id`, `section`) VALUES (NULL, '$newSection')";
 
+                              if(mysqli_query($conn,$query)){
+                                echo '<div class="alert alert-success" role="alert">';
+                                echo "New Section was added sucessfuly";
+                                echo "</div>";
+                              }
+                              else{
+                                echo '<div class="alert alert-danger" role="alert">';
+                                echo "Cannot add new section, contact IT for assistance";
+                                echo "</div>";
+                              }
+                              mysqli_close($conn);
+                            }
+                            else{
+                              echo '<div class="alert alert-warning" role="alert">';
+                              echo "Internal error, contact IT for assitance.";
+                              echo "</div>";
+                            }
+                          }
+                        ?>
+                      </div>
+                      
                       <!-- Graphs -->
                       <div role="tabpanel" class="tab-pane fade" id="graphs">
                         <!--<form action="admin.php" method="POST">-->
