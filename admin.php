@@ -14,8 +14,8 @@
       <div class="row">
         <div class="col-4">
             <picture>
-                <source srcset="../imgs/news.png" type="image/svg+xml">
-                <img src="" class="img-fluid img-thumbnail w-50 p-3 mx-auto d-block" alt="LOGO">
+                <source srcset="" type="image/svg+xml">
+                <img src="./imgs/news.png" class="img-fluid img-thumbnail w-50 p-3 mx-auto d-block" alt="LOGO">
             </picture>
         </div>
         <div class="col-7">
@@ -112,35 +112,35 @@
                     <!--Note Creation-->
                     <div role="tabpanel" class="tab-pane fade" id="note-creation">
                         <br>
-                        <form>
+                        <form action="admin.php" method="GET">
                             <div class="form-group">
                                 <label for="lblTitle">Title:</label>
-                                <input type="text" class="form-control" id="usernameInput" placeholder="Enter the Title">
+                                <input type="text" class="form-control" name="txtTitle" placeholder="Enter the Title">
                             </div>
                             <br>
                             <div class="form-group">
                                 <label for="lblPhoto"><em>Enter photo for the note:</em></label>
-                                <input type="file" class="form-control-file" id="photoAdd">
+                                <input type="file" class="form-control-file" name="picPhoto">
                             </div>
                             <br>
                             <div class="form-group">
                               <label for="lblDate"><em>Enter the date:</em></label>
-                              <input type="text" class="form-control" id="dateInpurt" placeholder="MM/DD/YYYY">
+                              <input class="form-control" type="date" value="2021-05-19" id="inputDate" name='txtDate'>
                             </div>
                             <br>
                             <div class="form-group">
                                 <label for="lblNote"><em>Write all text for the note:</em></label>
-                                <textarea class="form-control" id="txtNote" rows="3"></textarea>
+                                <textarea class="form-control" name="txtText" rows="3"></textarea>
                             </div>
                             <div class="form-group">
                               <label for="lblAuthor"><em>Author:</em></label>
-                              <input type="text" class="form-control" id="noteInputDelete" placeholder="Author">
+                              <input type="text" class="form-control" name="txtAutor" placeholder="Author">
                             </div>
                             <br>
                             <div class = "dropdown">
                               <label for="lblSection"><em>Select the section:</em></label>
                               <br>
-                              <select class="custom_select">
+                              <select class="custom_select" name="cmbSection">
                                 <?php 
                                   $hostname = "localhost";
                                   $hostuser = "root";
@@ -154,9 +154,11 @@
                                     $row = mysqli_fetch_assoc($result);
                                     if (mysqli_num_rows($result) > 0) {
                                       // output data of each row
+                                      $i = 1;
                                       do{
                                         if($row["st"]==1){
-                                          echo '<option value = "'.$row["section"]. '" >'. $row["section"]. "</option>";
+                                          echo '<option value = "'.$i. '" >'. $row["section"]. "</option>";
+                                          $i++;
                                         }
                                       }
                                       while($row = mysqli_fetch_assoc($result));
@@ -172,17 +174,58 @@
                                   }
                                   mysqli_close($conn);
                                 ?>
+                                </select>
+                            </div>
+                            <br>
+                            <input type="submit" class="btn btn-primary btn-lg" name="insertNews">
+                        </form>
+                        <?php
+                          $hostname = "localhost";
+                          $hostuser = "root";
+                          $hostpassword = "";
+                          $hostdatabase = "newsapp";
+                          //$hostuser = "id16368442_root";
+                          //$hostpassword = "H3lloWorld!1234";
+                          //$hostdatabase = "id16368442_newsapp";
+                          //$hostport = "3306";
+                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
+                          if(array_key_exists('insertNews', $_GET)) {
+                            if($conn){
+                              $newTitle = $_GET['txtTitle'];
+                              $newPhoto = $_GET['picPhoto'];
+                              $newText = $_GET['txtText'];
+                              $newDate = $_GET['txtDate'];
+                              $newAutor = $_GET['txtAutor'];
+                              $newSection = $_GET['cmbSection'];
+                              $query = "INSERT INTO `news` (`id`, `title`,`photo`,`text`,`date`,`autor`,`section_id`) VALUES (NULL,'$newTitle','$newPhoto','$newText','$newDate','$newAutor',$newSection)";
+
+                              //echo "QUERY".$query;
+
+                              if(mysqli_query($conn,$query)){
+                                echo '<div class="alert alert-success" role="alert">';
+                                echo "Note was added sucessfuly";
+                                echo "</div>";
+                              }
+                              else{
+                                echo '<div class="alert alert-danger" role="alert">';
+                                echo "Cannot add new note, contact IT for assistance";
+                                echo "</div>";
+                              }
+                              mysqli_close($conn);
+                            }
+                            else{
+                              echo '<div class="alert alert-warning" role="alert">';
+                              echo "Internal error, contact IT for assitance.";
+                              echo "</div>";
+                            }
+                          }
+                        ?>
                                 <!-- <option value = "1" >Sports</option>
                                 
                                 <option value = "3" >Politics</option>
                                 <option value = "4" >Financial</option>
                                 <option value = "5" >Art</option>
                                 <option value = "6" >Weather</option> -->
-                              </select>
-                            </div>
-                            <br>
-                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                        </form>
                     </div>
 
                     <!--Delete Full News Sections-->
@@ -301,20 +344,63 @@
                             <nav class="navbar navbar-light bg-light">
                                 <div class="container-fluid">
                                   <a class="navbar-brand">Search for Title</a>
-                                  <form class="d-flex">
-                                    <input class="form-control me-2" type="search" placeholder="Enter the complete title" aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                  <form class="d-flex" method="GET">
+                                    <input class="form-control me-2" type="search" name="txtTitle" placeholder="Enter the complete title" aria-label="Search">
+                                    <button class="btn btn-outline-success" type="submit" name="searchNote">Search</button>
                                   </form>
                                 </div>
                               </nav>
                             <br>
-                            <div class="form-group">
-                              <label for="lblNoteDelete"><em>Note:</em></label>
-                              <input type="text" class="form-control" id="noteInputDelete" placeholder="Titles Found" readonly>
-                            </div>
-                            <br>
-                            <button type="submit" class="btn btn-primary btn-lg">Delete</button>
-                        </form>
+                        <?php
+                          $hostname = "localhost";
+                          $hostuser = "root";
+                          $hostpassword = "";
+                          $hostdatabase = "newsapp";
+                          //$hostuser = "id16368442_root";
+                          //$hostpassword = "H3lloWorld!1234";
+                          //$hostdatabase = "id16368442_newsapp";
+                          //$hostport = "3306";
+                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
+                          if(array_key_exists('searchNote', $_GET)) {
+                            if($conn){
+                              $newNote  = $_GET['txtTitle'];
+                              $query = "SELECT * FROM news WHERE title ='$newNote'";
+                              $result =  mysqli_query($conn,$query);
+                              
+                              if(mysqli_query($conn,$query)){
+                                if (mysqli_num_rows($result) > 0) {
+                                  //HERE GOES CODE
+                                  $row = mysqli_fetch_assoc($result);
+                                  echo '<form action="admin.php" method="get">';
+                                    echo '<div class="form-group">';
+                                      echo  '<label for="lblName3">Section Name Found:</label>';
+                                      echo  '<input type="text" class="form-control" name="txtDelete" value='."'".$row["title"]."' readonly>";
+                                      echo  '<br>';
+                                      echo  '<button type="submit" class="btn btn-primary btn-lg" name="deleteNote">Delete</button>';
+                                    echo  '</div>';
+                                  echo  '</form>';
+                                }
+                                else{
+                                  echo '<div class="alert alert-danger" role="alert">';
+                                  echo "Section doesn't exist, try again";
+                                  echo "</div>";
+                                }
+                              }
+                              else{
+                                echo '<div class="alert alert-danger" role="alert">';
+                                echo "Cannot find section, contact IT for assistance";
+                                echo "</div>";
+                              }
+                              mysqli_close($conn);
+                            }
+                            else{
+                              echo '<div class="alert alert-warning" role="alert">';
+                              echo "Internal error, contact IT for assitance.";
+                              echo "</div>";
+                            }
+                          }
+                        ?>
+
                         <?php
                           $hostname = "localhost";
                           $hostuser = "root";
@@ -327,17 +413,16 @@
                           $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
                           if(array_key_exists('deleteNote', $_GET)) {
                             if($conn){
-                              $newSection = $_GET['txtSection'];
-                              $query = "INSERT INTO `sections` (`id`, `section`) VALUES (NULL, '$newSection')";
-
+                              $foundSection  = $_GET['txtDelete'];
+                              $query = "DELETE FROM news WHERE title ='$foundSection'";
                               if(mysqli_query($conn,$query)){
                                 echo '<div class="alert alert-success" role="alert">';
-                                echo "New Section was added sucessfuly";
-                                echo "</div>";
+                                echo "New Section was DELETED sucessfuly";
+                                echo "</div>"; 
                               }
                               else{
                                 echo '<div class="alert alert-danger" role="alert">';
-                                echo "Cannot add new section, contact IT for assistance";
+                                echo "Cannot find section, contact IT for assistance";
                                 echo "</div>";
                               }
                               mysqli_close($conn);

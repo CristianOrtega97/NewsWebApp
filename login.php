@@ -43,7 +43,7 @@
     <div class="container">
         <div class="row justify-content-md-center">
           <div class="col-5">
-            <form action="/controllers/buscar.php" method="get">
+            <form action="./controllers/buscar.php" method="get">
               <div class="mb-3">
                 <label for="lblUsername" class="form-label">Username: </label>
                 <input type="text" class="form-control" id="inputUsername" placeholder="Enter your username">

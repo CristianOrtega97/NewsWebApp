@@ -16,8 +16,8 @@
         <div class="row">
           <div class="col-4">
             <picture>
-                <source srcset="/imgs/news.png" type="image/svg+xml">
-                <img src="" class="img-fluid img-thumbnail w-50 p-3 mx-auto d-block" alt="LOGO">
+                <source srcset="" type="image/svg+xml">
+                <img src="./imgs/news.png" class="img-fluid img-thumbnail w-50 p-3 mx-auto d-block" alt="LOGO">
             </picture>
           </div>
           <div class="col-7">
@@ -40,21 +40,24 @@
         <div class="row">
             <div class="col">
                 <br>
-                <h1 style="text-align: center;">Article Template</h1>
+                <h1 style="text-align: center;">Latest News</h1>
                 <article class="all-browsers">
-                    <h1>Most Popular Browsers</h1>
                     <article class="browser">
+                    <div class="container">
                         <h3>Google Chrome</h3>
-                        <p><img src="/imgs/test.jpg" class="img-fluid" alt="TEST">Google Chrome is a web browser developed by Google, released in 2008. Chrome is the world's most popular web browser today!</p>
+                        <br>
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="./imgs/test.jpg" class="img-fluid" alt="TEST">
+                            </div>
+                            <div class="col-10">
+                                <p>Google Chrome is a web browser developed by Google, released in 2008. Chrome is the world's most popular web browser today!</p>                                  
+                                <p>AUTOR: Yo merengues - 10/10/2020</p>
+                            </div>
+                        </div>
+                    </div>
                     </article>
-                    <article class="browser">
-                        <h3>Mozilla Firefox</h3>
-                        <p><img src="/imgs/test.jpg" class="img-fluid" alt="TEST">Mozilla Firefox is an open-source web browser developed by Mozilla. Firefox has been the second most popular web browser since January, 2018.</p>
-                    </article>
-                    <article class="browser">
-                        <h3>Microsoft Edge</h3>
-                        <p><img src="/imgs/test.jpg" class="img-fluid" alt="TEST">Microsoft Edge is a web browser developed by Microsoft, released in 2015. Microsoft Edge replaced Internet Explorer.</p>
-                    </article>
+                    <hr>
                 </article>
             </div>
         </div>
