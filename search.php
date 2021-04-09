@@ -51,7 +51,6 @@
             <div class="col">
               <label for="lblFilter" class="form-label">Filter:</label>
                 <div class = "dropdown">
-                  <br>
                   <select class="custom_select" name="cmbSection">
                   <?php 
                     $hostname = "localhost";
@@ -93,14 +92,67 @@
                   </select>
                 </div>
               <br>
-              <input type="submit" class="btn btn-primary btn-lg" name="search" value="Search">
+              <input type="submit" class="btn btn-primary btn-lg" name="search" value="Filter">
             </div>
             </div>
           </nav>
         </div>
       </div>
     </div>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <br>
+                <article class="all-browsers">
+                <?php 
+                    $hostname = "localhost";
+                    $hostuser = "root";
+                    $hostpassword = "";
+                    $hostdatabase = "newsapp";
+                    $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
 
+                    if($conn){
+                        $select_sql = "SELECT * FROM news";
+                        $result =  mysqli_query($conn,$select_sql);
+                        $row = mysqli_fetch_assoc($result);
+                            if (mysqli_num_rows($result) > 0) {
+                                // output data of each row
+                                do{
+                                    echo '<article class="browser">';
+                                        echo '<div class="container">';
+                                            echo '<h3>'.$row["title"].'</h3>';
+                                            echo '<br>';
+                                            echo '<div class="row">';
+                                                echo '<div class="col-2">';
+                                                    echo '<img src="./imgs/'.$row["photo"].'" class="img-fluid" alt="TEST">';
+                                                echo '</div>';
+                                                echo '<div class="col-10">';
+                                                    echo '<p>'.$row["text"].'</p>';                                
+                                                    echo '<p>Author: '.$row["autor"].' - '.$row["date"].'10/10/2020</p>';
+                                                echo '</div>';
+                                            echo '</div>';
+                                        echo '</div>';
+                                    echo '</article>';
+                                    echo '<hr>';
+                                }
+                                while($row = mysqli_fetch_assoc($result));
+                            }
+                            else {
+                                echo "0 results";
+                            }
+                    }
+                    else{
+                        echo '<div class="alert alert-warning" role="alert">';
+                        echo "Internal error, contact IT for assitance.";
+                        echo "</div>";
+                        }
+                    mysqli_close($conn);
+                ?>
+                </article>
+            </div>
+        </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
