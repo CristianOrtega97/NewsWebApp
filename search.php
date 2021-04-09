@@ -30,11 +30,75 @@
             <div class="col">
                 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
                     <a class="navbar-brand" href="notes.php">Worldwide News</a>
-                    <a class="navbar-brand" href="#"></a>
+                    <a class="navbar-brand" href=""></a>
                     <a class="navbar-brand" href="login.php">Log-in</a>
                 </nav>
             </div>
         </div>
+    </div>
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <div class="col">
+            <label for="lblSearch" class="form-label">Search:</label>
+              <input type="text" class="form-control" name="txtSearch" placeholder="Enter title to search">
+              <br>
+              <input type="submit" class="btn btn-primary btn-lg" name="search" value="Search">
+            </div>
+            <a class="navbar-brand" href=""></a>
+            <div class="col">
+              <label for="lblFilter" class="form-label">Filter:</label>
+                <div class = "dropdown">
+                  <br>
+                  <select class="custom_select" name="cmbSection">
+                  <?php 
+                    $hostname = "localhost";
+                    $hostuser = "root";
+                    $hostpassword = "";
+                    $hostdatabase = "newsapp";
+                    //$hostuser = "id16368442_root";
+                    //$hostpassword = "H3lloWorld!1234";
+                    //$hostdatabase = "id16368442_newsapp";
+                    //$hostport = "3306";
+                    $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
+
+                    if($conn){
+                      $select_sql = "SELECT * FROM sections";
+                      $result =  mysqli_query($conn,$select_sql);
+                      $row = mysqli_fetch_assoc($result);
+                        if (mysqli_num_rows($result) > 0) {
+                          // output data of each row
+                          $i = 1;
+                          do{
+                            if($row["st"]==1){
+                              echo '<option value = "'.$i. '" >'. $row["section"]. "</option>";
+                              $i++;
+                            }
+                          }
+                          while($row = mysqli_fetch_assoc($result));
+                        }
+                        else {
+                          echo "0 results";
+                        }
+                      }
+                      else{
+                        echo '<div class="alert alert-warning" role="alert">';
+                        echo "Internal error, contact IT for assitance.";
+                        echo "</div>";
+                      }
+                      mysqli_close($conn);
+                    ?>
+                  </select>
+                </div>
+              <br>
+              <input type="submit" class="btn btn-primary btn-lg" name="search" value="Search">
+            </div>
+            </div>
+          </nav>
+        </div>
+      </div>
     </div>
 
     <!-- Optional JavaScript -->

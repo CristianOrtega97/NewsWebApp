@@ -52,7 +52,7 @@
                 <label for="lblPassword" class="form-label">Password</label>
                 <input type="password" class="form-control" name="txtPassword" placeholder="Enter your password">
               </div>
-              <input type="submit" class="btn btn-primary btn-lg" name="login">
+              <input type="submit" class="btn btn-primary btn-lg" name="login" value="Log-in">
             </form>
           </div>
         </div>

@@ -151,6 +151,10 @@
                                   $hostuser = "root";
                                   $hostpassword = "";
                                   $hostdatabase = "newsapp";
+                                  //$hostuser = "id16368442_root";
+                                  //$hostpassword = "H3lloWorld!1234";
+                                  //$hostdatabase = "id16368442_newsapp";
+                                  //$hostport = "3306";
                                   $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
 
                                   if($conn){
@@ -459,7 +463,6 @@
                                 //$hostport = "3306";
 
                                 $connection = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
-
 
                                 if ($connection) {
                                     echo "You're connected";
