@@ -22,7 +22,12 @@
             <h1 class="p-5">Worldwide News</h1>
         </div>
         <div class="col-1 p-4">
-          <h3>Logout</h3>
+          <form action="index.php">
+            <div class="col-2">
+              <br>
+              <button>Logout</button>
+            </div>
+          </form>
         </div>
     </div>
     <div class="container">
