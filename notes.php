@@ -42,22 +42,50 @@
                 <br>
                 <h1 style="text-align: center;">Latest News</h1>
                 <article class="all-browsers">
-                    <article class="browser">
-                    <div class="container">
-                        <h3>Google Chrome</h3>
-                        <br>
-                        <div class="row">
-                            <div class="col-2">
-                                <img src="./imgs/test.jpg" class="img-fluid" alt="TEST">
-                            </div>
-                            <div class="col-10">
-                                <p>Google Chrome is a web browser developed by Google, released in 2008. Chrome is the world's most popular web browser today!</p>                                  
-                                <p>AUTOR: Yo merengues - 10/10/2020</p>
-                            </div>
-                        </div>
-                    </div>
-                    </article>
-                    <hr>
+                <?php 
+                    $hostname = "localhost";
+                    $hostuser = "root";
+                    $hostpassword = "";
+                    $hostdatabase = "newsapp";
+                    $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
+
+                    if($conn){
+                        $select_sql = "SELECT * FROM news";
+                        $result =  mysqli_query($conn,$select_sql);
+                        $row = mysqli_fetch_assoc($result);
+                            if (mysqli_num_rows($result) > 0) {
+                                      // output data of each row
+                                do{
+                                    echo '<article class="browser">';
+                                        echo '<div class="container">';
+                                            echo '<h3>'.$row["title"].'</h3>';
+                                            echo '<br>';
+                                            echo '<div class="row">';
+                                                echo '<div class="col-2">';
+                                                    echo '<img src="./imgs/'.$row["photo"].'" class="img-fluid" alt="TEST">';
+                                                echo '</div>';
+                                                echo '<div class="col-10">';
+                                                    echo '<p>'.$row["text"].'</p>';                                
+                                                    echo '<p>Author: '.$row["autor"].' - '.$row["date"].'10/10/2020</p>';
+                                                echo '</div>';
+                                            echo '</div>';
+                                        echo '</div>';
+                                    echo '</article>';
+                                    echo '<hr>';
+                                }
+                                while($row = mysqli_fetch_assoc($result));
+                            }
+                            else {
+                                echo "0 results";
+                            }
+                    }
+                    else{
+                        echo '<div class="alert alert-warning" role="alert">';
+                        echo "Internal error, contact IT for assitance.";
+                        echo "</div>";
+                        }
+                    mysqli_close($conn);
+                ?>
                 </article>
             </div>
         </div>

@@ -16,8 +16,8 @@
         <div class="row">
           <div class="col-4">
             <picture>
-                <source srcset="/imgs/news.png" type="image/svg+xml">
-                <img src="" class="img-fluid img-thumbnail w-50 p-3 mx-auto d-block" alt="LOGO">
+                <source srcset="" type="image/svg+xml">
+                <img src="./imgs/news.png" class="img-fluid img-thumbnail w-50 p-3 mx-auto d-block" alt="LOGO">
             </picture>
           </div>
           <div class="col-7">
