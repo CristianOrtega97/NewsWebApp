@@ -44,3 +44,8 @@ INSERT INTO `news` (`id`, `title`, `photo`, `text`, `date`, `autor`,`section_id`
 
 INSERT INTO `news` (`id`, `title`, `photo`, `text`, `date`, `autor`,`section_id`) VALUES (NULL, 'Test2','test.jpg',
 'TEST 2\r\nTEST 2\r\nTEST 2\r\nTEST 2\r\nTEST 2', current_timestamp(),'Test', '3');
+
+-- COUNT NUMBER OF SECTIONS
+SELECT COUNT(section_id) FROM news WHERE section_id = 1
+SELECT COUNT(section_id) FROM news WHERE section_id = 2
+SELECT COUNT(section_id) FROM news WHERE section_id = 3

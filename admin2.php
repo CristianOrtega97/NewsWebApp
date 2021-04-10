@@ -450,59 +450,26 @@
                         <!--<form action="admin.php" method="POST">-->
                             <!-- HERE GOES THE GRAPHS-->
                             <!-- No filter is required it's just a generic graph-->
-                            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                            <script type="text/javascript">
-                              google.charts.load("current", {packages:["corechart"]});
-                              google.charts.setOnLoadCallback(drawChart);
-                              function drawChart() {
-                                var data = google.visualization.arrayToDataTable([
-                                  ['Sections', 'Published'],
-                                  <?php
-                                    $hostname = "localhost";
-                                    $hostuser = "root";
-                                    $hostpassword = "";
-                                    $hostdatabase = "newsapp";
-                                    //$hostuser = "id16368442_root";
-                                    //$hostpassword = "H3lloWorld!1234";
-                                    //$hostdatabase = "id16368442_newsapp";
-                                    //$hostport = "3306";
-                                    $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
+                            <?php
+                                $hostname = "localhost";
+                                $hostuser = "root";
+                                $hostpassword = "";
+                                $hostdatabase = "newsapp";
+                                //$hostuser = "id16368442_root";
+                                //$hostpassword = "H3lloWorld!1234";
+                                //$hostdatabase = "id16368442_newsapp";
+                                //$hostport = "3306";
 
-                                    if($conn){
-                                      $select_sql = "SELECT id,section FROM sections";
-                                      $result_sum =  mysqli_query($conn,$select_sql);
-                                      if (mysqli_num_rows($result_sum) > 0) {
-                                        while($row = mysqli_fetch_assoc($result_sum)){
-                                          $select_sql_sum = "SELECT COUNT(section_id) AS number FROM news WHERE section_id = ".$row['id'];
-                                          $result_data =  mysqli_query($conn,$select_sql_sum);
-                                          $row2 = mysqli_fetch_assoc($result_data);
-                                          echo "['".$row['section']."',".$row2['number']."],";
-                                        }
-                                      }
-                                      else{
-                                        echo "0 results";
-                                      }
-                                    }
-                                  else{
-                                    echo '<div class="alert alert-warning" role="alert">';
-                                    echo "Internal error, contact IT for assitance.";
-                                    echo "</div>";
-                                  }
-                                  mysqli_close($conn);
-                                ?>
-                              ]);
+                                $connection = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
 
-                              var options = {
-                                title: 'Notes in total published',
-                                pieHole: 0,
-                              };
-
-                              var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-                                chart.draw(data, options);
-                              }
-                            </script> 
-                        
-                        <div id="donutchart" style="width: 1000px; height: 800px;"></div>
+                                if ($connection) {
+                                    echo "You're connected";
+                                }
+                                else{
+                                    echo "You're NOT connected";
+                                }
+                            ?>  
+                            <div id="donutchart" style="width: 1000px; height: 800px;"></div>
                        <!-- </form> -->
                     </div>
               </div>
@@ -515,8 +482,27 @@
         
 
     <!-- Optional JavaScript -->
-    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Sections', 'Published'],
+          ['Politics',1],
+          ['Financial',0],
+          ['Sports',1],
+        ]);
 
+        var options = {
+          title: 'Notes in total published',
+          pieHole: 0,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
