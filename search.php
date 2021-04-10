@@ -42,14 +42,17 @@
         <div class="col">
           <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
             <div class="col">
-            <label for="lblSearch" class="form-label">Search:</label>
-              <input type="text" class="form-control" name="txtSearch" placeholder="Enter title to search">
-              <br>
-              <input type="submit" class="btn btn-primary btn-lg" name="search" value="Search">
+              <label for="lblSearch" class="form-label">Search:</label>
+              <form class="d-flex" method="GET">
+                <input type="text" class="form-control" name="txtSearch" placeholder="Enter title to search">
+                <br>
+                <input type="submit" class="btn btn-primary btn-lg" name="search" value="Search">
+              </form>
             </div>
             <a class="navbar-brand" href=""></a>
             <div class="col">
               <label for="lblFilter" class="form-label">Filter:</label>
+              <form class="d-flex" method="GET">
                 <div class = "dropdown">
                   <select class="custom_select" name="cmbSection">
                   <?php 
@@ -91,8 +94,9 @@
                     ?>
                   </select>
                 </div>
+                <input type="submit" class="btn btn-primary btn-lg" name="filter" value="Filter">
+                </form>
               <br>
-              <input type="submit" class="btn btn-primary btn-lg" name="search" value="Filter">
             </div>
             </div>
           </nav>
@@ -110,45 +114,84 @@
                     $hostuser = "root";
                     $hostpassword = "";
                     $hostdatabase = "newsapp";
+                    //$hostuser = "id16368442_root";
+                    //$hostpassword = "H3lloWorld!1234";
+                    //$hostdatabase = "id16368442_newsapp";
+                    //$hostport = "3306";
                     $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
 
                     if($conn){
-                        $select_sql = "SELECT * FROM news";
-                        $result =  mysqli_query($conn,$select_sql);
-                        $row = mysqli_fetch_assoc($result);
-                            if (mysqli_num_rows($result) > 0) {
-                                // output data of each row
-                                do{
-                                    echo '<article class="browser">';
-                                        echo '<div class="container">';
-                                            echo '<h3>'.$row["title"].'</h3>';
-                                            echo '<br>';
-                                            echo '<div class="row">';
-                                                echo '<div class="col-2">';
-                                                    echo '<img src="./imgs/'.$row["photo"].'" class="img-fluid" alt="TEST">';
-                                                echo '</div>';
-                                                echo '<div class="col-10">';
-                                                    echo '<p>'.$row["text"].'</p>';                                
-                                                    echo '<p>Author: '.$row["autor"].' - '.$row["date"].'10/10/2020</p>';
-                                                echo '</div>';
+                      if(array_key_exists('search', $_GET)) {
+                      $search = $_GET['txtSearch'];
+                      $select_sql = "SELECT * FROM news WHERE title LIKE '%$search%'";
+                      $result =  mysqli_query($conn,$select_sql);
+                      $row = mysqli_fetch_assoc($result);
+                        if (mysqli_num_rows($result) > 0) {
+                               // output data of each row
+                               do{
+                                echo '<article class="browser">';
+                                    echo '<div class="container">';
+                                        echo '<h3>'.$row["title"].'</h3>';
+                                        echo '<br>';
+                                        echo '<div class="row">';
+                                            echo '<div class="col-2">';
+                                                echo '<img src="./imgs/'.$row["photo"].'" class="img-fluid" alt="TEST">';
+                                            echo '</div>';
+                                            echo '<div class="col-10">';
+                                                echo '<p>'.$row["text"].'</p>';                                
+                                                echo '<p>Author: '.$row["autor"].' - '.$row["date"].'</p>';
                                             echo '</div>';
                                         echo '</div>';
-                                    echo '</article>';
-                                    echo '<hr>';
-                                }
-                                while($row = mysqli_fetch_assoc($result));
+                                    echo '</div>';
+                                echo '</article>';
+                                echo '<hr>';
                             }
-                            else {
-                                echo "0 results";
-                            }
-                    }
-                    else{
+                            while($row = mysqli_fetch_assoc($result));
+                        }
+                        else {
+                          echo "0 results";
+                        }
+                      }
+                      elseif(array_key_exists('filter', $_GET)) {
+                        $search = $_GET['cmbSection'];
+                        echo "SEARCH: $search";
+                        $select_sql = "SELECT * FROM news WHERE section_id = $search";
+                        $result =  mysqli_query($conn,$select_sql);
+                        $row = mysqli_fetch_assoc($result);
+                          if (mysqli_num_rows($result) > 0) {
+                                 // output data of each row
+                                 do{
+                                  echo '<article class="browser">';
+                                      echo '<div class="container">';
+                                          echo '<h3>'.$row["title"].'</h3>';
+                                          echo '<br>';
+                                          echo '<div class="row">';
+                                              echo '<div class="col-2">';
+                                                  echo '<img src="./imgs/'.$row["photo"].'" class="img-fluid" alt="TEST">';
+                                              echo '</div>';
+                                              echo '<div class="col-10">';
+                                                  echo '<p>'.$row["text"].'</p>';                                
+                                                  echo '<p>Author: '.$row["autor"].' - '.$row["date"].'</p>';
+                                              echo '</div>';
+                                          echo '</div>';
+                                      echo '</div>';
+                                  echo '</article>';
+                                  echo '<hr>';
+                              }
+                              while($row = mysqli_fetch_assoc($result));
+                          }
+                          else {
+                            echo "0 results";
+                          }
+                        }
+                      }
+                      else{
                         echo '<div class="alert alert-warning" role="alert">';
                         echo "Internal error, contact IT for assitance.";
                         echo "</div>";
-                        }
-                    mysqli_close($conn);
-                ?>
+                      }
+                      mysqli_close($conn);
+                    ?>
                 </article>
             </div>
         </div>
