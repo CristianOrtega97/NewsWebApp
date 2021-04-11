@@ -32,7 +32,7 @@
       <div class="row">
           <div class="col">
               <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-                  <a class="navbar-brand" href="notes.php">Worldwide News</a>
+                  <a class="navbar-brand" href="index.php">Worldwide News</a>
                   <a class="navbar-brand" href="search.php">Search News</a>
                   <a class="navbar-brand" href="#"></a>
               </nav>
@@ -71,15 +71,15 @@
       }
     ?>
     <?php
-      $hostname = "localhost";
+      //$hostname = "localhost";
       $hostuser = "root";
-      $hostpassword = "";
-      $hostdatabase = "newsapp";
-      //$hostuser = "id16368442_root";
-      //$hostpassword = "H3lloWorld!1234";
-      //$hostdatabase = "id16368442_newsapp";
-      //$hostport = "3306";
-      $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
+      //$hostpassword = "";
+      //$hostdatabase = "newsapp";
+      $hostuser = "id16368442_root";
+      $hostpassword = "H3lloWorld!1234";
+      $hostdatabase = "id16368442_newsapp";
+      $hostport = "3306";
+      $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase,$hostport);
       if(array_key_exists('login', $_GET)) {
         if($conn){
           $newUser = $_GET['txtUser'];
