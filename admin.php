@@ -34,7 +34,7 @@
       <div class="row">
           <div class="col">
               <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-                  <a class="navbar-brand" href="notes.php">Worldwide News</a>
+                  <a class="navbar-brand" href="index.php">Worldwide News</a>
                   <a class="navbar-brand" href="search.php">Search News</a>
               </nav>
           </div>
