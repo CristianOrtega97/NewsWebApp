@@ -57,28 +57,15 @@
           </div>
         </div>
     </div> 
-
     <?php
-      if(array_key_exists('login', $_GET)) {
-        $newUser = $_GET['txtUser'];
-        $newPassword = $_GET['txtPassword'];
-        if($newUser == "1" && $newPassword == "1"){
-          header("location: admin.php");
-        }
-        else{
-
-        }
-      }
-    ?>
-    <?php
-      //$hostname = "localhost";
+      $hostname = "localhost";
       $hostuser = "root";
-      //$hostpassword = "";
-      //$hostdatabase = "newsapp";
-      $hostuser = "id16368442_root";
-      $hostpassword = "H3lloWorld!1234";
-      $hostdatabase = "id16368442_newsapp";
-      $hostport = "3306";
+      $hostpassword = "";
+      $hostdatabase = "newsapp";
+      //$hostuser = "id16368442_root";
+      //$hostpassword = "H3lloWorld!1234";
+      //$hostdatabase = "id16368442_newsapp";
+      //$hostport = "3306";
       $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase,$hostport);
       if(array_key_exists('login', $_GET)) {
         if($conn){
@@ -91,8 +78,6 @@
             $result =  mysqli_query($conn,$query);
             $row = mysqli_fetch_assoc($result);
             if(mysqli_num_rows($result) > 0) {
-              echo "USER: ".$row["user"];
-              echo "PASS: ".$row["password"];
               if($newUser == $row["user"] && $newPassword == $row["password"]){
                 header("location: admin.php");
               }

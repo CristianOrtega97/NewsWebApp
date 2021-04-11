@@ -78,15 +78,15 @@
                         </form>
                       </div>
                       <?php
-                        //$hostname = "localhost";
+                        $hostname = "localhost";
                         $hostuser = "root";
-                        //$hostpassword = "";
-                        //$hostdatabase = "newsapp";
-                        $hostuser = "id16368442_root";
-                        $hostpassword = "H3lloWorld!1234";
-                        $hostdatabase = "id16368442_newsapp";
-                        $hostport = "3306";
-                        $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase,$hostport);
+                        $hostpassword = "";
+                        $hostdatabase = "newsapp";
+                        //$hostuser = "id16368442_root";
+                        //$hostpassword = "H3lloWorld!1234";
+                        //$hostdatabase = "id16368442_newsapp";
+                        //$hostport = "3306";
+                        $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
                         if(array_key_exists('insertSection', $_GET)) {
                           if($conn){
                             $newSection = $_GET['txtSection'];
@@ -147,15 +147,15 @@
                               <br>
                               <select class="custom_select" name="cmbSection">
                                 <?php 
-                                  //$hostname = "localhost";
+                                  $hostname = "localhost";
                                   $hostuser = "root";
-                                  //$hostpassword = "";
-                                  //$hostdatabase = "newsapp";
-                                  $hostuser = "id16368442_root";
-                                  $hostpassword = "H3lloWorld!1234";
-                                  $hostdatabase = "id16368442_newsapp";
-                                  $hostport = "3306";
-                                  $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase,$hostport);
+                                  $hostpassword = "";
+                                  $hostdatabase = "newsapp";
+                                  //$hostuser = "id16368442_root";
+                                  //$hostpassword = "H3lloWorld!1234";
+                                  //$hostdatabase = "id16368442_newsapp";
+                                  //$hostport = "3306";
+                                  $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
 
                                   if($conn){
                                     $select_sql = "SELECT * FROM sections";
@@ -189,15 +189,15 @@
                             <input type="submit" class="btn btn-primary btn-lg" name="insertNews">
                         </form>
                         <?php
-                          //$hostname = "localhost";
+                          $hostname = "localhost";
                           $hostuser = "root";
-                          //$hostpassword = "";
-                          //$hostdatabase = "newsapp";
-                          $hostuser = "id16368442_root";
-                          $hostpassword = "H3lloWorld!1234";
-                          $hostdatabase = "id16368442_newsapp";
-                          $hostport = "3306";
-                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase,$hostport);
+                          $hostpassword = "";
+                          $hostdatabase = "newsapp";
+                          //$hostuser = "id16368442_root";
+                          //$hostpassword = "H3lloWorld!1234";
+                          //$hostdatabase = "id16368442_newsapp";
+                          //$hostport = "3306";
+                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
                           if(array_key_exists('insertNews', $_GET)) {
                             if($conn){
                               $newTitle = $_GET['txtTitle'];
@@ -253,15 +253,15 @@
                             <br>
                         </form>
                         <?php
-                          //$hostname = "localhost";
+                          $hostname = "localhost";
                           $hostuser = "root";
-                          //$hostpassword = "";
-                          //$hostdatabase = "newsapp";
-                          $hostuser = "id16368442_root";
-                          $hostpassword = "H3lloWorld!1234";
-                          $hostdatabase = "id16368442_newsapp";
-                          $hostport = "3306";
-                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase,$hostport);
+                          $hostpassword = "";
+                          $hostdatabase = "newsapp";
+                          //$hostuser = "id16368442_root";
+                          //$hostpassword = "H3lloWorld!1234";
+                          //$hostdatabase = "id16368442_newsapp";
+                          //$hostport = "3306";
+                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
                           if(array_key_exists('searchSection', $_GET)) {
                             if($conn){
                               $newSection  = $_GET['txtSection'];
@@ -310,15 +310,15 @@
                         ?>
 
                         <?php
-                          //$hostname = "localhost";
+                          $hostname = "localhost";
                           $hostuser = "root";
-                          //$hostpassword = "";
-                          //$hostdatabase = "newsapp";
-                          $hostuser = "id16368442_root";
-                          $hostpassword = "H3lloWorld!1234";
-                          $hostdatabase = "id16368442_newsapp";
-                          $hostport = "3306";
-                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase,$hostport);
+                          $hostpassword = "";
+                          $hostdatabase = "newsapp";
+                          //$hostuser = "id16368442_root";
+                          //$hostpassword = "H3lloWorld!1234";
+                          //$hostdatabase = "id16368442_newsapp";
+                          //$hostport = "3306";
+                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
                           if(array_key_exists('deleteSection', $_GET)) {
                             if($conn){
                               $foundSection  = $_GET['txtDelete'];
@@ -364,15 +364,15 @@
                               </nav>
                             <br>
                         <?php
-                          //$hostname = "localhost";
+                          $hostname = "localhost";
                           $hostuser = "root";
-                          //$hostpassword = "";
-                          //$hostdatabase = "newsapp";
-                          $hostuser = "id16368442_root";
-                          $hostpassword = "H3lloWorld!1234";
-                          $hostdatabase = "id16368442_newsapp";
-                          $hostport = "3306";
-                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase,$hostport);
+                          $hostpassword = "";
+                          $hostdatabase = "newsapp";
+                          //$hostuser = "id16368442_root";
+                          //$hostpassword = "H3lloWorld!1234";
+                          //$hostdatabase = "id16368442_newsapp";
+                          //$hostport = "3306";
+                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
                           if(array_key_exists('searchNote', $_GET)) {
                             if($conn){
                               $newNote  = $_GET['txtTitle'];
@@ -414,15 +414,15 @@
                         ?>
 
                         <?php
-                          //$hostname = "localhost";
+                          $hostname = "localhost";
                           $hostuser = "root";
-                          //$hostpassword = "";
-                          //$hostdatabase = "newsapp";
-                          $hostuser = "id16368442_root";
-                          $hostpassword = "H3lloWorld!1234";
-                          $hostdatabase = "id16368442_newsapp";
-                          $hostport = "3306";
-                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase,$hostport);
+                          $hostpassword = "";
+                          $hostdatabase = "newsapp";
+                          //$hostuser = "id16368442_root";
+                          //$hostpassword = "H3lloWorld!1234";
+                          //$hostdatabase = "id16368442_newsapp";
+                          //$hostport = "3306";
+                          $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
                           if(array_key_exists('deleteNote', $_GET)) {
                             if($conn){
                               $foundSection  = $_GET['txtDelete'];

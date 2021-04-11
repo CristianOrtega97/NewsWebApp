@@ -56,15 +56,15 @@
                 <div class = "dropdown">
                   <select class="custom_select" name="cmbSection">
                   <?php 
-                    //$hostname = "localhost";
+                    $hostname = "localhost";
                     $hostuser = "root";
-                    //$hostpassword = "";
-                    //$hostdatabase = "newsapp";
-                    $hostuser = "id16368442_root";
-                    $hostpassword = "H3lloWorld!1234";
-                    $hostdatabase = "id16368442_newsapp";
-                    $hostport = "3306";
-                    $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase,$hostport);
+                    $hostpassword = "";
+                    $hostdatabase = "newsapp";
+                    //$hostuser = "id16368442_root";
+                    //$hostpassword = "H3lloWorld!1234";
+                    //$hostdatabase = "id16368442_newsapp";
+                    //$hostport = "3306";
+                    $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
 
                     if($conn){
                       $select_sql = "SELECT * FROM sections";
@@ -110,15 +110,15 @@
                 <br>
                 <article class="all-browsers">
                 <?php 
-                    //$hostname = "localhost";
+                    $hostname = "localhost";
                     $hostuser = "root";
-                    //$hostpassword = "";
-                    //$hostdatabase = "newsapp";
-                    $hostuser = "id16368442_root";
-                    $hostpassword = "H3lloWorld!1234";
-                    $hostdatabase = "id16368442_newsapp";
-                    $hostport = "3306";
-                    $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase,$hostport);
+                    $hostpassword = "";
+                    $hostdatabase = "newsapp";
+                    //$hostuser = "id16368442_root";
+                    //$hostpassword = "H3lloWorld!1234";
+                    //$hostdatabase = "id16368442_newsapp";
+                    //$hostport = "3306";
+                    $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
 
                     if($conn){
                       if(array_key_exists('search', $_GET)) {
