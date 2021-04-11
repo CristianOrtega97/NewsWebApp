@@ -326,6 +326,9 @@
                               $query = "UPDATE sections SET st = 0 WHERE section ='$foundSection'";
                               mysqli_query($conn,"ALTER TABLE `news` ADD FOREIGN KEY (`section_id`) REFERENCES `sections`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT");                           
                               mysqli_query($conn,"ALTER TABLE `news` DROP FOREIGN KEY `news_ibfk_2`; ALTER TABLE `news` ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`autor`) REFERENCES `user`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;");
+                              $result_id = mysqli_query($conn,"SELECT id FROM sections WHERE section = '$foundSection'");
+                              $row_id = mysqli_fetch_assoc($result_id);
+                              mysqli_query($conn,"DELETE FROM `news`WHERE section_id = ".$row_id['id']);
                               if(mysqli_query($conn,$query)){
                                 echo '<div class="alert alert-success" role="alert">';
                                 echo "New Section was DELETED sucessfuly";

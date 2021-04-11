@@ -38,7 +38,7 @@ INSERT INTO `user` (`id`, `name`, `user`, `password`) VALUES (NULL, 'Emanuel', '
 -- NEWS DATA INSERTION
 INSERT INTO `news` (`id`, `title`, `photo`, `text`, `date`, `autor`, `section_id`) 
 VALUES (NULL, '¡Tensión en Madrid!', 'madrid.jpg', 'En Madrid, estalla una ola de crimen devastador. La gente comienza a exigirle a sus mandatarios que comiencen a tomar cartas en el asunto. Sin embargo, al no ser escuchados, quemaron uno de los centros joyeros más importantes del mundo.', current_timestamp(), 'Emanuel Camarena', '3'),
-(NULL, 'Guarden sus Bitcoins', 'stonks.jpg', 'El banco mundial comenzó a ver el aumento del valor de la moneda internacional que no le pertenece a ninguna nación. Se preguntarán como funciona, y esto es porque es una clave criptográfica que se asocia a un monedero virtual, el cual descuenta y recibe pagos. Para poder hacer un intercambio, cada usuario debe tener una clave criptográfica y el sistema permite descontar la cantidad de bitcoin a quien compra y aumentar la cantidad de bitcoin de la cuenta de quien vende.', current_timestamp(), 'Carlos Gutierrez', '2')
+(NULL, 'Guarden sus Bitcoins', 'stonks.jpg', 'El banco mundial comenzó a ver el aumento del valor de la moneda internacional que no le pertenece a ninguna nación. Se preguntarán como funciona, y esto es porque es una clave criptográfica que se asocia a un monedero virtual, el cual descuenta y recibe pagos. Para poder hacer un intercambio, cada usuario debe tener una clave criptográfica y el sistema permite descontar la cantidad de bitcoin a quien compra y aumentar la cantidad de bitcoin de la cuenta de quien vende.', current_timestamp(), 'Carlos Gutierrez', '2');
 
 
 
