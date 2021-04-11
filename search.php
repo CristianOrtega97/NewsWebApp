@@ -154,8 +154,7 @@
                       }
                       elseif(array_key_exists('filter', $_GET)) {
                         $search = $_GET['cmbSection'];
-                        echo "SEARCH: $search";
-                        $select_sql = "SELECT * FROM news WHERE section_id = $search";
+                        $select_sql = "SELECT * FROM news WHERE section_id = $search WHERE";
                         $result =  mysqli_query($conn,$select_sql);
                         $row = mysqli_fetch_assoc($result);
                           if (mysqli_num_rows($result) > 0) {
