@@ -66,7 +66,7 @@
       //$hostpassword = "H3lloWorld!1234";
       //$hostdatabase = "id16368442_newsapp";
       //$hostport = "3306";
-      $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase,$hostport);
+      $conn = mysqli_connect($hostname,$hostuser,$hostpassword,$hostdatabase);
       if(array_key_exists('login', $_GET)) {
         if($conn){
           $newUser = $_GET['txtUser'];
